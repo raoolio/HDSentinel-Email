@@ -1,4 +1,0 @@
-# HDSentinel Email configuration
-EMAIL_FROM="rdl-desktop@televida.biz"
-EMAIL_TO="rdelcid@televida.biz"
-EMAIL_SUBJECT="HDSentinel Report"
