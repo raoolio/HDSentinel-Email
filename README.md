@@ -1,10 +1,5 @@
-# HDSentinel Email
-Script for receiving HDSentinel HTML reports via email.
-
-## INSTRUCTIONS
-Hi thank you for downloading this little script. It will allow you to
-set up daily HDSentinel reports delivered to your email. Just follow the steps:
-
+# INSTRUCTIONS
+Hi thank you for downloading this little script. It will allow you to set up daily HDSentinel reports delivered to your email. Just follow the steps:
 
 
 ## 1. SCRIPT SETUP
@@ -18,9 +13,10 @@ HDSentinel linux binary package.
 
 Then give execution permission to the GenerateHDReport.sh script file.
 Open a shell script and execute:
-
+~~~
   shell> cd <DOWNLOAD PATH>
   shell> chmod +x GenerateHDReport.sh
+~~~
 
 
 
@@ -28,10 +24,11 @@ Open a shell script and execute:
 Open the email.cnf file included in this zip file and put you correct
 email addresses. The configuration file contains three variables explained
 below:
-
+~~~
 EMAIL_FROM= Your sending email address.
 EMAIL_TO= Your recipient email address (you can separate multiple addresses with a comma character)
 EMAIL_SUBJECT= The email subject used when sending the email report.
+~~~
 
 Note: The email is sent using the sendmail command, and installing or
 configuring that tool is beyond the scope of this guide.
@@ -41,11 +38,12 @@ configuring that tool is beyond the scope of this guide.
 After changing the email configuration file, you can perform a run test
 to check if everything works as expected:
 
+~~~
   shell> sudo GenerateHDReport.sh
+~~~
 
 the output of the script should be something like this:
-
->>-------------------------------------------------
+~~~
 06/05/2019 16:48:13 - Generating HDSentinel Report
 Hard Disk Sentinel for LINUX console 0.17x64.8556 (c) 2017 info@hdsentinel.com
 Start with -r [reportfile] to save data to report, -h for help
@@ -70,7 +68,7 @@ Est. lifetime: more than 100 days
 Report file saved as: /tmp/HDSentinelReport.html
 
 06/05/2019 16:48:13 - Sending email TO[destination@email.com] SUBJECT[HDSentinel Report] CONTENT[/tmp/HDSentinelReport.html]
------------------------------------------------------>>
+~~~
 
 
 
@@ -79,15 +77,19 @@ Once you performed the previous steps and verify that you received the
 report in your email's inbox, you can add the following line to your crontab
 to receive the report daily (or however you prefer):
 
-### Edit your crontab:
+Edit your crontab:
+~~~
   shell>sudo crontab -e
+~~~
 
 And add the following line for daily execution at 8am, don't forget to
 change the PATH to where the GenerateHDReport.sh script file is located
 in your system:
 
+~~~
   # HDSentinel Daily Report
   0 8 * * * /<CHANGE PATH HERE>/GenerateHDReport.sh >> /var/log/HDSentinelReport.log 2>&1
+~~~
 
 
 
