@@ -1,4 +1,4 @@
-# INSTRUCTIONS
+# HDSentinel Email Script
 Hi thank you for downloading this little script. It will allow you to set up daily HDSentinel reports delivered to your email. Just follow the steps:
 
 
@@ -11,11 +11,10 @@ https://www.hdsentinel.com/hard_disk_sentinel_linux.php
 Next step is to copy the contents of this zip file to the containing folder of the
 HDSentinel linux binary package.
 
-Then give execution permission to the GenerateHDReport.sh script file.
-Open a shell script and execute:
+Then give execution permission to the GenerateHDReport.sh script file, open a shell and execute:
 ~~~
-  shell> cd <DOWNLOAD PATH>
-  shell> chmod +x GenerateHDReport.sh
+  cd <DOWNLOAD PATH>
+  chmod +x GenerateHDReport.sh
 ~~~
 
 
@@ -30,16 +29,13 @@ EMAIL_TO= Your recipient email address (you can separate multiple addresses with
 EMAIL_SUBJECT= The email subject used when sending the email report.
 ~~~
 
-Note: The email is sent using the sendmail command, and installing or
-configuring that tool is beyond the scope of this guide.
+**Note**: The email is sent using the **sendmail** command, and installing or configuring that tool is beyond the scope of this guide.
 
 
 ## 3. TEST REPORT
-After changing the email configuration file, you can perform a run test
-to check if everything works as expected:
-
+After changing the email configuration file, you can perform a run test to check if everything works as expected, open a shell and execute:
 ~~~
-  shell> sudo GenerateHDReport.sh
+  sudo GenerateHDReport.sh
 ~~~
 
 the output of the script should be something like this:
@@ -72,24 +68,18 @@ Report file saved as: /tmp/HDSentinelReport.html
 
 
 
-## 4. CRONTAB CONFIGURATION
-Once you performed the previous steps and verify that you received the
-report in your email's inbox, you can add the following line to your crontab
-to receive the report daily (or however you prefer):
+## 4. CRONTAB SETUP
+Once you performed the previous steps and verify that you received the report in your email's inbox, you can add the following line to your crontab to receive the report daily (or however you prefer):
 
-Edit your crontab:
+To edit your crontab, execute the following command inside a shell:
 ~~~
-  shell>sudo crontab -e
+  sudo crontab -e
 ~~~
 
-And add the following line for daily execution at 8am, don't forget to
-change the PATH to where the GenerateHDReport.sh script file is located
-in your system:
+And add the following line for daily execution at 8am, don't forget to change the PATH to where the GenerateHDReport.sh script file is located in your system:
 
 ~~~
   # HDSentinel Daily Report
   0 8 * * * /<CHANGE PATH HERE>/GenerateHDReport.sh >> /var/log/HDSentinelReport.log 2>&1
 ~~~
-
-
 
